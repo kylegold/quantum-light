@@ -23,6 +23,7 @@ app.listen(PORT, () => {
 })
 
 
+
 const LightingEffect = () => {
   // let lightID
   const USERNAME = 'po8cCSHyxja0eQYgD3fWz86fbZ5Wu2wWzvBDGt68',
@@ -38,7 +39,7 @@ v3.discovery.nupnpSearch()
     return v3.api.createLocal(host).connect(USERNAME);
   })
   .then(api => {
-    let randomSeed 
+    // let randomSeed 
     let counter;
     const strobeLighting = () => { 
       setTimeout(() => {
@@ -83,53 +84,44 @@ v3.discovery.nupnpSearch()
           // let fullSeedQuantum = seedQuantum.join('').toString();
           // randomSeed = seedrandom(fullSeedQuantum);
         
-          const octo =  qrand.getRandomHexOctets(16, function(err, octets) {
-            if (err) {throw err} 
-            else {
-
-            
-          let fullSeedQuantum = octets.join('').toString();
-          randomSeed = seedrandom(fullSeedQuantum);
-     
+         
       
-      let randomWarmth = parseInt(randomSeed * (500 - 153) + 153) // min max - 153 500
-      let randomSaturation = parseInt(randomSeed * (100 - 0) + 0) // min max - 0 100
-      let randomR1 = parseInt(randomSeed * (255 - 0) + 0) // min max - 0 255
-      let randomB1 = parseInt(randomSeed * (255 - 0) + 0) // min max - 0 255
-      let randomG1 = parseInt(randomSeed * (255 - 255) + 0) // min max - 0 255
-      let randomTransitionTime = parseInt(randomSeed * (5000 - 0) + 0) // 1ms - 5000ms
+      let randomWarmth = parseInt(Math.random() * (500 - 153) + 153) // min max - 153 500
+      let randomSaturation = parseInt(Math.random() * (100 - 0) + 0) // min max - 0 100
+      let randomR1 = parseInt(Math.random() * (255 - 0) + 0) // min max - 0 255
+      let randomB1 = parseInt(Math.random() * (255 - 0) + 0) // min max - 0 255
+      let randomG1 = parseInt(Math.random() * (255 - 255) + 0) // min max - 0 255
+      let randomTransitionTime = parseInt(Math.random() * (5000 - 0) + 0) // 1ms - 5000ms
       
       // let x = randomSeed() % (80 && 8)
       // let y = randomSeed() % (80 && 8)
-      if (counter % 5 == 0){ //favor the blue every 9 sequence
-        randomB1 = parseInt(randomSeed * (255 - 0) + 0) // min max - 0 255
+      if (counter % 3 == 0){ //favor the blue every 9 sequence
+        randomB1 = parseInt(Math.random() * (255 - 0) + 0) // min max - 0 255
         randomG1 = 0
         randomR1 = 0
         }
 
       if (counter % 7 == 0){ //sharp every 7 sequence
-         randomTransitionTime = parseInt(randomSeed * (10 - 0) + 0) // 1ms - 5000ms
+         randomTransitionTime = parseInt(Math.random() * (10 - 0) + 0) // 1ms - 5000ms
       }
 
       if (counter % 27 == 0){ //long every 27 sequence
-         randomTransitionTime = parseInt(randomSeed * (10000 - 0) + 0) // 1ms - 5000ms
+         randomTransitionTime = parseInt(Math.random() * (10000 - 0) + 0) // 1ms - 5000ms
       }
 
       if (counter % 300 == 0){ //favor the red every 300 sequence
-        randomR1 = parseInt(randomSeed * (255 - 128) + 128)  // min max - 0 255
+        randomR1 = parseInt(Math.random() * (255 - 128) + 128)  // min max - 0 255
      }
 
      if (counter % 9 == 0){ //favor the blue every 9 sequence
-      randomB1 = parseInt(randomSeed * (255 - 128) + 128) // min max - 0 255
+      randomB1 = parseInt(Math.random() * (255 - 128) + 128) // min max - 0 255
       }
 
       if (counter % 9 == 0){ //favor the blue every 9 sequence
-        randomG1 = parseInt(randomSeed * (255 - 200) + 0) // min max - 0 255
-        // randomB1 = 0
-        // randomR1 = 0
-      }
+        randomG1 = parseInt(Math.random() * (255 - 200) + 0) // min max - 0 255
+        }
 
-      const randomBri = parseInt(randomSeed * (30) + 10) // min max - 0 100
+      const randomBri = parseInt(Math.random() * (50 - 0) + 0) // min max - 0 100
 
 
       const highBrightness = 100
@@ -144,8 +136,6 @@ v3.discovery.nupnpSearch()
       api.lights.setLightState(LIGHT_ID[i], state);
         // }
     // })
-    }
-    });
 }
 }, 2000)
     }
