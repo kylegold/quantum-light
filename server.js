@@ -39,6 +39,7 @@ v3.discovery.nupnpSearch()
   })
   .then(api => {
     // let randomSeed 
+    let counter;
     const strobeLighting = () => { 
       setTimeout(() => {
 
@@ -93,38 +94,44 @@ v3.discovery.nupnpSearch()
       
       // let x = randomSeed() % (80 && 8)
       // let y = randomSeed() % (80 && 8)
-    //   if (counter % 7 == 0){ //sharp every 7 sequence
-    //      randomTransitionTime = parseInt(Math.random() * (10 - 0) + 0) // 1ms - 5000ms
-    //   }
+      if (counter % 3 == 0){ //favor the blue every 9 sequence
+        randomB1 = parseInt(Math.random() * (255 - 0) + 0) // min max - 0 255
+        randomG1 = 0
+        randomR1 = 0
+        }
 
-    //   if (counter % 27 == 0){ //long every 27 sequence
-    //      randomTransitionTime = parseInt(Math.random() * (10000 - 0) + 0) // 1ms - 5000ms
-    //   }
+      if (counter % 7 == 0){ //sharp every 7 sequence
+         randomTransitionTime = parseInt(Math.random() * (10 - 0) + 0) // 1ms - 5000ms
+      }
 
-    //   if (counter % 300 == 0){ //favor the red every 300 sequence
-    //     randomR1 = parseInt(Math.random() * (255 - 128) + 128)  // min max - 0 255
-    //  }
+      if (counter % 27 == 0){ //long every 27 sequence
+         randomTransitionTime = parseInt(Math.random() * (10000 - 0) + 0) // 1ms - 5000ms
+      }
 
-    //  if (counter % 9 == 0){ //favor the blue every 9 sequence
-    //   randomB1 = parseInt(Math.random() * (255 - 128) + 128) // min max - 0 255
-    //   }
+      if (counter % 300 == 0){ //favor the red every 300 sequence
+        randomR1 = parseInt(Math.random() * (255 - 128) + 128)  // min max - 0 255
+     }
 
-    //   if (counter % 9 == 0){ //favor the blue every 9 sequence
-    //     randomG1 = parseInt(Math.random() * (255 - 200) + 0) // min max - 0 255
-    //     }
+     if (counter % 9 == 0){ //favor the blue every 9 sequence
+      randomB1 = parseInt(Math.random() * (255 - 128) + 128) // min max - 0 255
+      }
 
-      const randomBri = parseInt(Math.random() * (100 - 40) + 40) // min max - 0 100
+      if (counter % 9 == 0){ //favor the blue every 9 sequence
+        randomG1 = parseInt(Math.random() * (255 - 200) + 0) // min max - 0 255
+        }
+
+      const randomBri = parseInt(Math.random() * (100 - 50) + 50) // min max - 0 100
 
 
       const highBrightness = 100
           let state = new LightState()
         .on()
-        .rgb(randomR1, randomB1, randomG1)
+        .rgb(randomR1, randomG1, randomB1)
         .ct(randomWarmth)
         .sat(randomSaturation)
         .transition(randomTransitionTime)
         .brightness(randomBri)
-      
+        counter +=1 
       api.lights.setLightState(LIGHT_ID[i], state);
         // }
     // })
@@ -134,6 +141,7 @@ v3.discovery.nupnpSearch()
     setInterval(() => {
       // for (let k = 0 ; k < 10000 ; k++) {
         setTimeout(() => {strobeLighting()}, 2000)
+
         // strobeLighting()
   //  }
     }, 3000)
