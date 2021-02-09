@@ -44,10 +44,13 @@ v3.discovery.nupnpSearch()
   .then(api => {
     // let randomSeed 
     let counter;
+    let randomLight = Math.ceil(Math.random() * (13) + 8)
+
     const strobeLighting = () => { 
       setTimeout(() => {
 
-      for (let i=0 ; i < LIGHT_ID.length ; i++){
+      while (randomLight < 21) {
+        LIGHT_ID[randomLight]
       const lowBrightness =  10
       //const octets = null
         // const octo = qrand.getRandomHexOctets(16, function(err, seedQuantum) {
