@@ -1,0 +1,16 @@
+#programStart {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#buttonStart {
+  width: 250px;
+  height: 50px;
+  border: none;
+  background-color: seagreen;
+  color: black;
+}
+
