@@ -40,6 +40,8 @@ v3.discovery.nupnpSearch()
   .then(api => {
     // let randomSeed 
     const strobeLighting = () => { 
+      setTimeout(() => {
+
       for (let i=0 ; i < LIGHT_ID.length ; i++){
       const lowBrightness =  10
       //const octets = null
@@ -117,7 +119,7 @@ v3.discovery.nupnpSearch()
       const highBrightness = 100
           let state = new LightState()
         .on()
-        .rgb(randomR1, 0, 0)
+        .rgb(randomR1, randomB1, randomG1)
         .ct(randomWarmth)
         .sat(randomSaturation)
         .transition(randomTransitionTime)
@@ -127,10 +129,15 @@ v3.discovery.nupnpSearch()
         // }
     // })
 }
+}, 2000)
     }
-       for (let k = 0 ; k < 10000 ; k++) {
-            setTimeout(() => {strobeLighting()}, 2000)
-       }
+    setInterval(() => {
+      // for (let k = 0 ; k < 10000 ; k++) {
+        setTimeout(() => {strobeLighting()}, 2000)
+        // strobeLighting()
+  //  }
+    }, 3000)
+      
     })
 }
 LightingEffect()
